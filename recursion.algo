@@ -1,0 +1,33 @@
+FUNCTION is_palindrome(str: STRING, i: INTEGER, j: INTEGER) : BOOLEAN
+VAR
+BEGIN
+    IF (str == '' OR str.length == 1) THEN
+        RETURN TRUE;
+    ELSE_IF (str[j] == str[i]) THEN
+        i := i + 1;
+        j := j +1;
+        RETURN is_palindrome(str, i, j);
+    ELSE
+        RETURN FALSE;
+    END_IF
+END
+
+
+ALGORITHM recursion
+VAR
+    str: STRING := "";
+    i: INTEGER := 0;
+    j: INTEGER := str.length - 1;
+BEGIN
+    Write("Saisir un mot");
+    Read(str);
+    i := 0;
+    j := str.length - 1;
+    str := ToUpper(str);
+    IF (is_palindrome(str, i, j)) THEN
+        WRITE("Le mot est un palindrome").
+    ELSE
+        WRITE("Le mot n'est pas un palindrome").
+    END_IF
+END
+
