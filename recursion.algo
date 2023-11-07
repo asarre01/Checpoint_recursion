@@ -1,33 +1,41 @@
+// Fonction récursive pour vérifier si une chaîne est un palindrome
 FUNCTION is_palindrome(str: STRING, i: INTEGER, j: INTEGER) : BOOLEAN
 VAR
 BEGIN
+    // Cas de base : si la chaîne est vide ou a une seule lettre, c'est un palindrome
     IF (str == '' OR str.length == 1) THEN
         RETURN TRUE;
+    // Sinon, compare les caractères correspondants aux indices i et j
     ELSE_IF (str[j] == str[i]) THEN
         i := i + 1;
-        j := j +1;
+        j := j - 1;
+        // Appel récursif pour vérifier les caractères restants
         RETURN is_palindrome(str, i, j);
+    // Si les caractères ne correspondent pas, la chaîne n'est pas un palindrome
     ELSE
         RETURN FALSE;
     END_IF
 END
 
-
+// Algorithme principal
 ALGORITHM recursion
 VAR
     str: STRING := "";
     i: INTEGER := 0;
     j: INTEGER := str.length - 1;
 BEGIN
+    // Demande à l'utilisateur de saisir une chaîne
     Write("Saisir un mot");
     Read(str);
+    // Initialise les indices i et j en fonction de la longueur de la chaîne
     i := 0;
     j := str.length - 1;
+    // Convertit la chaîne en majuscules pour ignorer la casse
     str := ToUpper(str);
+    // Appel de la fonction is_palindrome pour vérifier si la chaîne est un palindrome
     IF (is_palindrome(str, i, j)) THEN
         WRITE("Le mot est un palindrome").
     ELSE
         WRITE("Le mot n'est pas un palindrome").
     END_IF
 END
-
